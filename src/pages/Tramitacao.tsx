@@ -122,12 +122,12 @@ export function Tramitacao() {
             placeholder="Buscar..."
             value={busca}
             onChange={(e) => setBusca(e.target.value)}
-            className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="input-field max-w-[200px]"
           />
           <FiltroAno />
           <button
             onClick={abrirNovo}
-            className="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm font-medium"
+            className="btn-primary"
           >
             + Novo Protocolo
           </button>
@@ -137,15 +137,15 @@ export function Tramitacao() {
       {/* Tabela */}
       <div className="bg-white rounded-xl shadow overflow-hidden">
         <table className="w-full text-sm">
-          <thead className="bg-gray-50 text-gray-600 uppercase text-xs">
-            <tr>
-              <th className="px-4 py-3 text-left">Nº</th>
-              <th className="px-4 py-3 text-left">Tipo</th>
-              <th className="px-4 py-3 text-left">Data</th>
-              <th className="px-4 py-3 text-left">Proponente</th>
-              <th className="px-4 py-3 text-left">Ementa</th>
-              <th className="px-4 py-3 text-left">Status</th>
-              <th className="px-4 py-3 text-left">Ações</th>
+          <thead>
+            <tr className="bg-gray-50 border-b border-gray-100">
+              <th className="table-header">Nº</th>
+              <th className="table-header">Tipo</th>
+              <th className="table-header">Data</th>
+              <th className="table-header">Proponente</th>
+              <th className="table-header">Ementa</th>
+              <th className="table-header">Status</th>
+              <th className="table-header">Ações</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
@@ -161,7 +161,7 @@ export function Tramitacao() {
                 <td className="px-4 py-3">
                   <button
                     onClick={() => abrirEdicao(p.id)}
-                    className="text-blue-700 font-semibold hover:underline"
+                    className="text-brazil-blue font-semibold hover:underline"
                   >
                     {p.numero}
                   </button>
@@ -173,25 +173,25 @@ export function Tramitacao() {
                 <td className="px-4 py-3 text-gray-700">{p.proponente}</td>
                 <td className="px-4 py-3 text-gray-500 max-w-xs truncate">{p.ementa}</td>
                 <td className="px-4 py-3">
-                  <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                  <span className={
                     p.status === 'ABERTO'
-                      ? 'bg-green-100 text-green-700'
-                      : 'bg-gray-100 text-gray-600'
-                  }`}>
+                      ? 'badge-success'
+                      : 'badge-neutral'
+                  }>
                     {p.status}
                   </span>
                 </td>
                 <td className="px-4 py-3">
                   <button
                     onClick={() => abrirEdicao(p.id)}
-                    className="text-blue-600 hover:text-blue-800 mr-3 text-xs"
+                    className="text-blue-600 hover:text-blue-800 mr-3 text-xs font-medium"
                   >
                     {p.status === 'ENCERRADO' ? 'Visualizar' : 'Editar'}
                   </button>
                   {p.status !== 'ENCERRADO' && (
                     <button
                       onClick={() => excluir(p.id)}
-                      className="text-red-500 hover:text-red-700 text-xs"
+                      className="text-red-500 hover:text-red-700 text-xs font-medium"
                     >
                       Excluir
                     </button>
@@ -232,7 +232,7 @@ export function Tramitacao() {
               value={form.tipo}
               disabled={somenteLeitura(modal.data)}
               onChange={(e) => setForm({ ...form, tipo: e.target.value })}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100"
+              className="input-field disabled:bg-gray-100"
             >
               <option value="">Selecione...</option>
               {TIPOS.map((t) => <option key={t} value={t}>{t}</option>)}
@@ -246,7 +246,7 @@ export function Tramitacao() {
               value={form.numero}
               disabled={somenteLeitura(modal.data)}
               onChange={(e) => setForm({ ...form, numero: Number(e.target.value) })}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100"
+              className="input-field disabled:bg-gray-100"
             />
           </div>
 
@@ -257,7 +257,7 @@ export function Tramitacao() {
               value={form.data}
               disabled={somenteLeitura(modal.data)}
               onChange={(e) => setForm({ ...form, data: e.target.value })}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100"
+              className="input-field disabled:bg-gray-100"
             />
           </div>
 
@@ -267,7 +267,7 @@ export function Tramitacao() {
               value={form.votacao}
               disabled={somenteLeitura(modal.data)}
               onChange={(e) => setForm({ ...form, votacao: e.target.value })}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100"
+              className="input-field disabled:bg-gray-100"
             >
               <option value="">Selecione...</option>
               {VOTACOES.map((v) => <option key={v} value={v}>{v}</option>)}
@@ -281,7 +281,7 @@ export function Tramitacao() {
               value={form.proponente}
               disabled={somenteLeitura(modal.data)}
               onChange={(e) => setForm({ ...form, proponente: e.target.value })}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100"
+              className="input-field disabled:bg-gray-100"
             />
           </div>
 
@@ -292,7 +292,7 @@ export function Tramitacao() {
               disabled={somenteLeitura(modal.data)}
               onChange={(e) => setForm({ ...form, ementa: e.target.value })}
               rows={3}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100"
+              className="input-field disabled:bg-gray-100"
             />
           </div>
 
@@ -302,7 +302,7 @@ export function Tramitacao() {
               value={form.status}
               disabled={somenteLeitura(modal.data)}
               onChange={(e) => setForm({ ...form, status: e.target.value })}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100"
+              className="input-field disabled:bg-gray-100"
             >
               <option value="ABERTO">ABERTO</option>
               <option value="ENCERRADO">ENCERRADO</option>
@@ -316,7 +316,7 @@ export function Tramitacao() {
               value={form.exercicio}
               disabled={somenteLeitura(modal.data)}
               onChange={(e) => setForm({ ...form, exercicio: Number(e.target.value) })}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100"
+              className="input-field disabled:bg-gray-100"
             />
           </div>
         </div>
@@ -324,7 +324,7 @@ export function Tramitacao() {
         <div className="flex justify-end gap-3 mt-6">
           <button
             onClick={modal.close}
-            className="px-4 py-2 text-sm text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50"
+            className="btn-secondary"
           >
             {somenteLeitura(modal.data) ? 'Fechar' : 'Cancelar'}
           </button>
@@ -332,7 +332,7 @@ export function Tramitacao() {
             <button
               onClick={salvar}
               disabled={loading}
-              className="px-6 py-2 text-sm bg-blue-700 text-white rounded-lg hover:bg-blue-800 disabled:opacity-50"
+              className="btn-primary px-8"
             >
               {loading ? 'Salvando...' : 'Salvar'}
             </button>

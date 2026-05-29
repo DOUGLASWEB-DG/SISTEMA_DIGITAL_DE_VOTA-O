@@ -8,7 +8,7 @@ import { Configuracoes } from './pages/Configuracoes'
 export default function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-gray-100">
+      <div className="min-h-screen bg-background-soft">
         <Navbar />
         <main className="max-w-7xl mx-auto px-4 py-6">
           <Routes>

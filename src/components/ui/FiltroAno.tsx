@@ -8,7 +8,7 @@ export function FiltroAno() {
     <select
       value={ano}
       onChange={(e) => setAno(Number(e.target.value))}
-      className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+      className="input-field max-w-[120px]"
     >
       {anos.map((a) => <option key={a} value={a}>{a}</option>)}
     </select>

@@ -109,7 +109,7 @@ export function Sessoes() {
           <FiltroAno />
           <button
             onClick={abrirNovo}
-            className="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm font-medium"
+            className="btn-primary"
           >
             + Nova Sessão
           </button>
@@ -119,15 +119,15 @@ export function Sessoes() {
       {/* Tabela */}
       <div className="bg-white rounded-xl shadow overflow-hidden">
         <table className="w-full text-sm">
-          <thead className="bg-gray-50 text-gray-600 uppercase text-xs">
-            <tr>
-              <th className="px-4 py-3 text-left">Nº</th>
-              <th className="px-4 py-3 text-left">Tipo</th>
-              <th className="px-4 py-3 text-left">Data</th>
-              <th className="px-4 py-3 text-left">Hora</th>
-              <th className="px-4 py-3 text-left">Situação</th>
-              <th className="px-4 py-3 text-left">Exercício</th>
-              <th className="px-4 py-3 text-left">Ações</th>
+          <thead>
+            <tr className="bg-gray-50 border-b border-gray-100">
+              <th className="table-header">Nº</th>
+              <th className="table-header">Tipo</th>
+              <th className="table-header">Data</th>
+              <th className="table-header">Hora</th>
+              <th className="table-header">Situação</th>
+              <th className="table-header">Exercício</th>
+              <th className="table-header">Ações</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
@@ -143,7 +143,7 @@ export function Sessoes() {
                 <td className="px-4 py-3">
                   <button
                     onClick={() => abrirEdicao(s.id)}
-                    className="text-blue-700 font-semibold hover:underline"
+                    className="text-brazil-blue font-semibold hover:underline"
                   >
                     {String(s.numero).padStart(2, '0')}
                   </button>
@@ -154,11 +154,11 @@ export function Sessoes() {
                 </td>
                 <td className="px-4 py-3 text-gray-700">{s.hora}</td>
                 <td className="px-4 py-3">
-                  <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                    s.situacao === 'ABERTA'    ? 'bg-green-100 text-green-700' :
-                    s.situacao === 'ENCERRADA' ? 'bg-gray-100 text-gray-600'  :
-                                                 'bg-red-100 text-red-600'
-                  }`}>
+                  <span className={
+                    s.situacao === 'ABERTA'    ? 'badge-success' :
+                    s.situacao === 'ENCERRADA' ? 'badge-neutral' :
+                                                 'badge-danger'
+                  }>
                     {s.situacao}
                   </span>
                 </td>
@@ -166,11 +166,11 @@ export function Sessoes() {
                 <td className="px-4 py-3">
                   <button
                     onClick={() => abrirEdicao(s.id)}
-                    className="text-blue-600 hover:text-blue-800 mr-3 text-xs"
+                    className="text-blue-600 hover:text-blue-800 mr-3 text-xs font-medium"
                   >Editar</button>
                   <button
                     onClick={() => excluir(s.id)}
-                    className="text-red-500 hover:text-red-700 text-xs"
+                    className="text-red-500 hover:text-red-700 text-xs font-medium"
                   >Excluir</button>
                 </td>
               </tr>
@@ -196,7 +196,7 @@ export function Sessoes() {
             <select
               value={form.tipo}
               onChange={(e) => setForm({ ...form, tipo: e.target.value })}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="input-field"
             >
               <option value="">Selecione...</option>
               {TIPOS.map((t) => <option key={t} value={t}>{t}</option>)}
@@ -209,7 +209,7 @@ export function Sessoes() {
               type="number"
               value={form.numero}
               onChange={(e) => setForm({ ...form, numero: Number(e.target.value) })}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="input-field"
             />
           </div>
 
@@ -219,7 +219,7 @@ export function Sessoes() {
               type="date"
               value={form.data}
               onChange={(e) => setForm({ ...form, data: e.target.value })}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="input-field"
             />
           </div>
 
@@ -229,7 +229,7 @@ export function Sessoes() {
               type="time"
               value={form.hora}
               onChange={(e) => setForm({ ...form, hora: e.target.value })}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="input-field"
             />
           </div>
 
@@ -238,7 +238,7 @@ export function Sessoes() {
             <select
               value={form.situacao}
               onChange={(e) => setForm({ ...form, situacao: e.target.value })}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="input-field"
             >
               {SITUACOES.map((s) => <option key={s} value={s}>{s}</option>)}
             </select>
@@ -250,7 +250,7 @@ export function Sessoes() {
               type="number"
               value={form.exercicio}
               onChange={(e) => setForm({ ...form, exercicio: Number(e.target.value) })}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="input-field"
             />
           </div>
 
@@ -260,7 +260,7 @@ export function Sessoes() {
               value={form.sessao}
               onChange={(e) => setForm({ ...form, sessao: e.target.value })}
               rows={3}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="input-field"
             />
           </div>
         </div>
@@ -268,14 +268,14 @@ export function Sessoes() {
         <div className="flex justify-end gap-3 mt-6">
           <button
             onClick={modal.close}
-            className="px-4 py-2 text-sm text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50"
+            className="btn-secondary"
           >
             Cancelar
           </button>
           <button
             onClick={salvar}
             disabled={loading}
-            className="px-6 py-2 text-sm bg-blue-700 text-white rounded-lg hover:bg-blue-800 disabled:opacity-50"
+            className="btn-primary px-8"
           >
             {loading ? 'Salvando...' : 'Salvar'}
           </button>

@@ -91,7 +91,7 @@ export function Vereadores() {
         <h1 className="text-xl font-bold text-gray-800">Vereadores</h1>
         <button
           onClick={abrirNovo}
-          className="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm font-medium"
+          className="btn-primary"
         >
           + Novo Vereador
         </button>
@@ -100,16 +100,16 @@ export function Vereadores() {
       {/* Tabela */}
       <div className="bg-white rounded-xl shadow overflow-hidden">
         <table className="w-full text-sm">
-          <thead className="bg-gray-50 text-gray-600 uppercase text-xs">
-            <tr>
-              <th className="px-4 py-3 text-left">Foto</th>
-              <th className="px-4 py-3 text-left">Nome</th>
-              <th className="px-4 py-3 text-left">Apelido</th>
-              <th className="px-4 py-3 text-left">Partido</th>
-              <th className="px-4 py-3 text-left">Mesa</th>
-              <th className="px-4 py-3 text-left">Resp. Mesa</th>
-              <th className="px-4 py-3 text-left">Resumo</th>
-              <th className="px-4 py-3 text-left">Ações</th>
+          <thead>
+            <tr className="bg-gray-50 border-b border-gray-100">
+              <th className="table-header">Foto</th>
+              <th className="table-header">Nome</th>
+              <th className="table-header">Apelido</th>
+              <th className="table-header">Partido</th>
+              <th className="table-header">Mesa</th>
+              <th className="table-header">Resp. Mesa</th>
+              <th className="table-header">Resumo</th>
+              <th className="table-header">Ações</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
@@ -127,10 +127,10 @@ export function Vereadores() {
                     <img
                       src={v.foto_url}
                       alt={v.nome}
-                      className="w-10 h-10 rounded-full object-cover"
+                      className="w-10 h-10 rounded-full object-cover border border-gray-200"
                     />
                   ) : (
-                    <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold text-sm">
+                    <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-brazil-blue font-bold text-sm border border-blue-100">
                       {v.nome.charAt(0)}
                     </div>
                   )}
@@ -139,7 +139,7 @@ export function Vereadores() {
                 <td className="px-4 py-3 text-gray-600">{v.apelido}</td>
                 <td className="px-4 py-3">
                   {v.partido && (
-                    <span className="px-2 py-1 bg-blue-50 text-blue-700 rounded text-xs font-medium">
+                    <span className="px-2 py-1 bg-blue-50 text-brazil-blue rounded text-xs font-semibold">
                       {v.partido}
                     </span>
                   )}
@@ -150,7 +150,7 @@ export function Vereadores() {
                 <td className="px-4 py-3">
                   <button
                     onClick={() => abrirEdicao(v.id)}
-                    className="text-blue-600 hover:text-blue-800 text-xs"
+                    className="text-blue-600 hover:text-blue-800 text-xs font-medium"
                   >
                     Editar
                   </button>
@@ -180,7 +180,7 @@ export function Vereadores() {
               type="text"
               value={form.nome}
               onChange={(e) => setForm({ ...form, nome: e.target.value })}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="input-field"
             />
           </div>
 
@@ -190,7 +190,7 @@ export function Vereadores() {
               type="text"
               value={form.apelido}
               onChange={(e) => setForm({ ...form, apelido: e.target.value })}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="input-field"
             />
           </div>
 
@@ -200,7 +200,7 @@ export function Vereadores() {
               type="text"
               value={form.partido}
               onChange={(e) => setForm({ ...form, partido: e.target.value })}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="input-field"
             />
           </div>
 
@@ -209,7 +209,7 @@ export function Vereadores() {
             <select
               value={form.mesa}
               onChange={(e) => setForm({ ...form, mesa: e.target.value })}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="input-field"
             >
               <option value="">Sem cargo na mesa</option>
               {MESAS.filter(m => m).map((m) => (
@@ -224,7 +224,7 @@ export function Vereadores() {
               type="text"
               value={form.responsabilidade_mesa}
               onChange={(e) => setForm({ ...form, responsabilidade_mesa: e.target.value })}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="input-field"
             />
           </div>
 
@@ -235,10 +235,10 @@ export function Vereadores() {
       <img
         src={form.foto_url}
         alt="preview"
-        className="w-16 h-16 rounded-full object-cover border"
+        className="w-16 h-16 rounded-full object-cover border-2 border-gray-100 shadow-sm"
       />
     ) : (
-      <div className="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold text-lg">
+      <div className="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center text-brazil-blue font-bold text-lg border-2 border-blue-100">
         {form.nome.charAt(0) || '?'}
       </div>
     )}
@@ -258,7 +258,7 @@ export function Vereadores() {
             setErro(e.message)
           }
         }}
-        className="block w-full text-sm text-gray-500 file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+        className="block w-full text-sm text-gray-500 file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-brazil-blue hover:file:bg-blue-100 cursor-pointer"
       />
       <p className="text-xs text-gray-400 mt-1">JPG, PNG ou WEBP — máx. 5MB</p>
     </div>
@@ -271,7 +271,7 @@ export function Vereadores() {
               value={form.resumo}
               onChange={(e) => setForm({ ...form, resumo: e.target.value })}
               rows={3}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="input-field"
             />
           </div>
 
@@ -282,9 +282,9 @@ export function Vereadores() {
                 id="ativo"
                 checked={form.ativo === 1}
                 onChange={(e) => setForm({ ...form, ativo: e.target.checked ? 1 : 0 })}
-                className="w-4 h-4"
+                className="w-4 h-4 text-brazil-blue focus:ring-brazil-blue border-gray-300 rounded"
               />
-              <label htmlFor="ativo" className="text-sm text-gray-700">Vereador ativo</label>
+              <label htmlFor="ativo" className="text-sm font-medium text-gray-700">Vereador ativo</label>
             </div>
           )}
         </div>
@@ -292,14 +292,14 @@ export function Vereadores() {
         <div className="flex justify-end gap-3 mt-6">
           <button
             onClick={modal.close}
-            className="px-4 py-2 text-sm text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50"
+            className="btn-secondary"
           >
             Cancelar
           </button>
           <button
             onClick={salvar}
             disabled={loading}
-            className="px-6 py-2 text-sm bg-blue-700 text-white rounded-lg hover:bg-blue-800 disabled:opacity-50"
+            className="btn-primary px-8"
           >
             {loading ? 'Salvando...' : 'Salvar'}
           </button>

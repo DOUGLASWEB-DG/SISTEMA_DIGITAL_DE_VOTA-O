@@ -14,3 +14,37 @@
   --color-background-soft: #f4f7fa;
   --color-text-main: #0a1128;
 }
+
+@layer components {
+  .btn-primary {
+    @apply bg-brazil-blue hover:bg-blue-900 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all shadow-sm hover:shadow-md disabled:opacity-50;
+  }
+  
+  .btn-secondary {
+    @apply px-4 py-2 text-sm text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition-all;
+  }
+
+  .btn-success {
+    @apply bg-brazil-green hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all shadow-sm;
+  }
+
+  .input-field {
+    @apply w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brazil-blue/30 focus:border-brazil-blue transition-all;
+  }
+
+  .table-header {
+    @apply bg-gray-50 text-gray-600 uppercase text-xs font-semibold px-4 py-3 text-left;
+  }
+
+  .badge-success {
+    @apply px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium;
+  }
+
+  .badge-neutral {
+    @apply px-2 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-medium;
+  }
+
+  .badge-danger {
+    @apply px-2 py-1 bg-red-100 text-red-600 rounded-full text-xs font-medium;
+  }
+}

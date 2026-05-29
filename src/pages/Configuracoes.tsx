@@ -107,7 +107,7 @@ export function Configuracoes() {
           <button
             key={c.id}
             onClick={() => modal.open(c.id)}
-            className="bg-white rounded-xl shadow p-6 flex flex-col items-center gap-3 hover:shadow-md hover:bg-blue-50 transition text-center h-full"
+            className="bg-white rounded-xl shadow p-6 flex flex-col items-center gap-3 hover:shadow-md hover:bg-blue-50 transition-all text-center h-full border border-transparent hover:border-blue-100"
           >
             <span className="text-4xl">{c.icon}</span>
             <span className="font-semibold text-gray-800 text-sm">{c.label}</span>
@@ -123,7 +123,7 @@ export function Configuracoes() {
         title="Parâmetros Gerais"
       >
         {sucesso && (
-          <div className="mb-4 bg-green-50 border border-green-200 text-green-700 px-4 py-2 rounded-lg text-sm">
+          <div className="mb-4 bg-green-50 border border-green-200 text-green-700 px-4 py-2 rounded-lg text-sm font-medium">
             Configurações salvas com sucesso!
           </div>
         )}
@@ -139,7 +139,7 @@ export function Configuracoes() {
               type="text"
               value={config.nome_camara}
               onChange={(e) => setConfig({ ...config, nome_camara: e.target.value })}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="input-field"
             />
           </div>
           <div>
@@ -148,7 +148,7 @@ export function Configuracoes() {
               type="time"
               value={config.tempo_pequeno_expediente}
               onChange={(e) => setConfig({ ...config, tempo_pequeno_expediente: e.target.value })}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="input-field"
             />
           </div>
           <div>
@@ -157,12 +157,12 @@ export function Configuracoes() {
               type="time"
               value={config.tempo_grande_expediente}
               onChange={(e) => setConfig({ ...config, tempo_grande_expediente: e.target.value })}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="input-field"
             />
           </div>
         </div>
         <div className="flex justify-end gap-3 mt-6">
-          <button onClick={modal.close} className="px-4 py-2 text-sm text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50">
+          <button onClick={modal.close} className="btn-secondary">
             Fechar
           </button>
           <button
@@ -171,7 +171,7 @@ export function Configuracoes() {
               salvar()
             }}
             disabled={loading}
-            className="px-6 py-2 text-sm bg-blue-700 text-white rounded-lg hover:bg-blue-800 disabled:opacity-50"
+            className="btn-primary px-8"
           >
             {loading ? 'Salvando...' : 'Gravar'}
           </button>
@@ -190,7 +190,7 @@ export function Configuracoes() {
             <select
               value={config.voto_presidente}
               onChange={(e) => setConfig({ ...config, voto_presidente: e.target.value })}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="input-field"
             >
               <option value="PRESIDENTE VOTA">Presidente vota</option>
               <option value="PRESIDENTE NAO VOTA">Presidente não vota</option>
@@ -199,13 +199,13 @@ export function Configuracoes() {
           </div>
         </div>
         <div className="flex justify-end gap-3 mt-6">
-          <button onClick={modal.close} className="px-4 py-2 text-sm text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50">
+          <button onClick={modal.close} className="btn-secondary">
             Fechar
           </button>
           <button
             onClick={salvar}
             disabled={loading}
-            className="px-6 py-2 text-sm bg-blue-700 text-white rounded-lg hover:bg-blue-800 disabled:opacity-50"
+            className="btn-primary px-8"
           >
             Gravar
           </button>
@@ -226,15 +226,15 @@ export function Configuracoes() {
         <div className="grid grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Número da Legislatura *</label>
-            <input type="number" id="leg-num" className="w-full border rounded-lg px-3 py-2 text-sm" />
+            <input type="number" id="leg-num" className="input-field" />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Ano Início *</label>
-            <input type="number" id="leg-inicio" className="w-full border rounded-lg px-3 py-2 text-sm" />
+            <input type="number" id="leg-inicio" className="input-field" />
           </div>
         </div>
         <div className="flex justify-end gap-3 mt-6">
-          <button onClick={modal.close} className="px-4 py-2 text-sm text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50">
+          <button onClick={modal.close} className="btn-secondary">
             Fechar
           </button>
           <button 
@@ -244,7 +244,7 @@ export function Configuracoes() {
               if(!num || !ini) return setErro('Número e Ano Início são obrigatórios')
               salvar()
             }} 
-            className="px-6 py-2 text-sm bg-blue-700 text-white rounded-lg hover:bg-blue-800"
+            className="btn-primary px-8"
           >
             Gravar
           </button>
@@ -260,12 +260,12 @@ export function Configuracoes() {
         <div className="space-y-4">
           <p className="text-sm text-gray-600">O cadastro detalhado de parlamentares deve ser realizado na aba principal <strong>Vereadores</strong>.</p>
           <div className="p-4 bg-blue-50 border border-blue-100 rounded-lg">
-            <p className="text-xs text-blue-800 font-medium">Dica:</p>
-            <p className="text-xs text-blue-600">Lá você poderá subir fotos, definir cargos na mesa e partidos.</p>
+            <p className="text-xs text-brazil-blue font-bold">Dica:</p>
+            <p className="text-xs text-blue-700">Lá você poderá subir fotos, definir cargos na mesa e partidos.</p>
           </div>
         </div>
         <div className="flex justify-end mt-6">
-          <button onClick={modal.close} className="px-6 py-2 text-sm bg-blue-700 text-white rounded-lg hover:bg-blue-800">
+          <button onClick={modal.close} className="btn-primary px-8">
             Entendido
           </button>
         </div>
@@ -278,17 +278,17 @@ export function Configuracoes() {
         title="Configuração de Logomarca"
       >
         <div className="flex flex-col items-center gap-4 py-4">
-          <div className="w-32 h-32 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center text-gray-400">
+          <div className="w-32 h-32 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center text-gray-400 bg-gray-50">
             Sem Logo
           </div>
-          <input type="file" className="text-sm" />
+          <input type="file" className="text-sm file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-brazil-blue" />
           <p className="text-xs text-gray-400">Dimensões sugeridas: 200x200px</p>
         </div>
         <div className="flex justify-end gap-3 mt-4">
-          <button onClick={modal.close} className="px-4 py-2 text-sm text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50">
+          <button onClick={modal.close} className="btn-secondary">
             Fechar
           </button>
-          <button onClick={salvar} className="px-6 py-2 text-sm bg-blue-700 text-white rounded-lg hover:bg-blue-800">
+          <button onClick={salvar} className="btn-primary px-8">
             Gravar
           </button>
         </div>
@@ -309,15 +309,15 @@ export function Configuracoes() {
           <p className="text-sm text-gray-600 italic">Configure as datas das próximas sessões e eventos.</p>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Data do Evento *</label>
-            <input type="date" id="agenda-data" className="w-full border rounded-lg px-3 py-2 text-sm" />
+            <input type="date" id="agenda-data" className="input-field" />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Descrição *</label>
-            <textarea id="agenda-desc" placeholder="Descrição do evento" className="w-full border rounded-lg px-3 py-2 text-sm" rows={2}></textarea>
+            <textarea id="agenda-desc" placeholder="Descrição do evento" className="input-field" rows={2}></textarea>
           </div>
         </div>
         <div className="flex justify-end gap-3 mt-6">
-          <button onClick={modal.close} className="px-4 py-2 text-sm text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50">
+          <button onClick={modal.close} className="btn-secondary">
             Fechar
           </button>
           <button 
@@ -327,7 +327,7 @@ export function Configuracoes() {
               if(!d || !desc) return setErro('Data e descrição são obrigatórios')
               salvar()
             }} 
-            className="px-6 py-2 text-sm bg-blue-700 text-white rounded-lg hover:bg-blue-800"
+            className="btn-primary px-8"
           >
             Gravar
           </button>
@@ -346,14 +346,14 @@ export function Configuracoes() {
           </div>
         )}
         <div className="space-y-4">
-          <div className="border rounded-lg p-4 bg-gray-50">
-             <p className="text-sm font-medium text-gray-700">Adicionar Novo Modelo *</p>
-             <input type="file" id="anexo-file" className="mt-2 text-xs" />
+          <div className="border border-gray-200 rounded-lg p-4 bg-gray-50">
+             <p className="text-sm font-semibold text-gray-700">Adicionar Novo Modelo *</p>
+             <input type="file" id="anexo-file" className="mt-2 text-xs file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-blue-50 file:text-brazil-blue" />
           </div>
           <p className="text-xs text-gray-400 italic">Formatos permitidos: PDF, DOCX, XLSX.</p>
         </div>
         <div className="flex justify-end gap-3 mt-6">
-          <button onClick={modal.close} className="px-4 py-2 text-sm text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50">
+          <button onClick={modal.close} className="btn-secondary">
             Fechar
           </button>
           <button 
@@ -362,7 +362,7 @@ export function Configuracoes() {
               if(!f) return setErro('Selecione um arquivo para o anexo')
               salvar()
             }} 
-            className="px-6 py-2 text-sm bg-blue-700 text-white rounded-lg hover:bg-blue-800"
+            className="btn-primary px-8"
           >
             Gravar
           </button>
